@@ -8,133 +8,211 @@ import {
 
 import preloader from "./src/utils/preloader";
 
-import Interactive from "./assets/interactive";
+
+const images = {
+  catalyst: require("./assets/catalyst-screen.png")
+};
 
 require("normalize.css");
 require("./src/themes/default/index.css");
 
-const images = {
-  city: require("./assets/city.jpg"),
-  kat: require("./assets/kat.png"),
-  logo: require("./assets/formidable-logo.svg"),
-  markdown: require("./assets/markdown.png")
-};
-
-preloader([images.city, images.kat, images.markdown]);
+preloader([images.catalyst]);
 
 render(
   <Spectacle>
     <Deck transition={["zoom", "slide"]} transitionDuration={500}>
-      <Slide transition={["zoom"]} bgColor="primary">
+      <Slide transition={["zoom"]} bgColor="primary" notes="Where I work, what I do, what I am trying to solve">
         <Heading size={1} fit caps lineHeight={1} textColor="black">
-          Spectacle
+          Builder
         </Heading>
         <Heading size={1} fit caps>
-          A ReactJS Presentation Library
+          NPM Task Runner
         </Heading>
         <Heading size={1} fit caps textColor="black">
-          Where You Can Write Your Decks In JSX
+          By FormidableLabs
         </Heading>
-        <Link href="https://github.com/FormidableLabs/spectacle">
+        <Link href="https://github.com/FormidableLabs/builder">
           <Text bold caps textColor="tertiary">View on Github</Text>
         </Link>
         <Text textSize="1.5em" margin="20px 0px 0px" bold>Hit Your Right Arrow To Begin!</Text>
       </Slide>
-      <Slide transition={["slide"]} bgColor="black" notes="You can even put notes on your slide. How awesome is that?">
-        <Image src={images.kat.replace("/", "")} margin="0px auto 40px" height="293px"/>
-        <Heading size={1} fit textColor="primary" textFont="secondary">
-          Wait what?
-        </Heading>
+      <Slide bgColor="black" notes="If you work with node modules, you are familiar with mangaging tasks in your package.json.  You can do very useful things like run tests, generate builds, run development servers, publish to NPM.  Builder helps take your npm tasks and make them composable.">
+      <Heading size={1} fit caps>
+        Builder
+      </Heading>
+      <Text  textColor="white" margin="20px 0px 0px">
+        Takes your npm tasks and makes them composable, controllable from a single point, and flexible.
+      </Text>
       </Slide>
-      <Slide transition={["zoom", "fade"]} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
+      <Slide bgColor="black" notes="Why do we need yet another build tool?">
+      <Heading size={1} fit caps>
+        Why do we need this?
+      </Heading>
+      <List textColor="white">
+        <ListItem>NPM good for dependencies</ListItem>
+        <ListItem>For multiple similar repositories, package.json doesn't scale</ListItem>
+      </List>
+      </Slide>
+      <Slide transition={["zoom", "fade"]} bgColor="black" notes="<ul><li>talk about that</li><li>and that</li></ul>">
+        <Heading size={1} fit caps>
+          10+ repositories like this
+        </Heading>
         <CodePane
-          lang="jsx"
-          source={require("raw!./assets/deck.example")}
+          source={require("raw!./assets/deck.badpackage")}
           margin="20px auto"
         />
       </Slide>
-      <Slide transition={["slide"]} bgImage={images.city.replace("/", "")} bgDarken={0.75}>
-        <Appear fid="1">
-          <Heading size={1} caps fit textColor="primary">
-            Full Width
-          </Heading>
-        </Appear>
-        <Appear fid="2">
-          <Heading size={1} caps fit textColor="tertiary">
-            Adjustable Darkness
-          </Heading>
-        </Appear>
-        <Appear fid="3">
-          <Heading size={1} caps fit textColor="primary">
-            Background Imagery
-          </Heading>
-        </Appear>
-      </Slide>
-      <Slide transition={["zoom", "fade"]} bgColor="primary">
-        <Heading caps fit>Flexible Layouts</Heading>
-        <Layout>
-          <Fill>
-            <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
-              Left
-            </Heading>
-          </Fill>
-          <Fill>
-            <Heading size={4} caps textColor="secondary" bgColor="white" margin={10}>
-              Right
-            </Heading>
-          </Fill>
-        </Layout>
-      </Slide>
-      <Slide transition={["slide"]} bgColor="black">
-        <BlockQuote>
-          <Quote>Wonderfully formatted quotes</Quote>
-          <Cite>Ken Wheeler</Cite>
-        </BlockQuote>
-      </Slide>
-      <Slide transition={["spin", "zoom"]} bgColor="tertiary">
-        <Heading caps fit size={1} textColor="primary">
-          Inline Markdown
+      <Slide bgColor="black">
+        <Heading size={1} fit caps>
+          Basically every box here is a component in NPM...
         </Heading>
-        <Markdown>
-          {`
-![Markdown Logo](${images.markdown.replace("/", "")})
-
-You can write inline images, [Markdown Links](http://commonmark.org), paragraph text and most other markdown syntax
-* Lists too!
-* With ~~strikethrough~~ and _italic_
-* And lets not forget **bold**
-          `}
-        </Markdown>
+        <Image src={images.catalyst.replace("/", "")} height="600"/>
       </Slide>
-      <Slide transition={["slide", "spin"]} bgColor="primary">
-        <Heading caps fit size={1} textColor="tertiary">
-          Smooth
-        </Heading>
-        <Heading caps fit size={1} textColor="secondary">
-          Combinable Transitions
-        </Heading>
+      <Slide bgColor="black">
+      <Heading size={1} fit caps>
+        That doesn't scale!
+      </Heading>
+      <List textColor="white">
+        <ListItem>NPM task changes are tedious</ListItem>
+        <ListItem>Repository structure</ListItem>
+        <ListItem>Managing files such as webpack.config</ListItem>
+      </List>
       </Slide>
-      <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
-        <List>
-          <ListItem><Appear fid="1">Inline style based theme system</Appear></ListItem>
-          <ListItem><Appear fid="2">Autofit text</Appear></ListItem>
-          <ListItem><Appear fid="3">Flexbox layout system</Appear></ListItem>
-          <ListItem><Appear fid="4">React-Router navigation</Appear></ListItem>
-          <ListItem><Appear fid="5">PDF export</Appear></ListItem>
-          <ListItem><Appear fid="6">And...</Appear></ListItem>
+      <Slide bgColor="black">
+      <Heading size={1} fit caps>
+        Enter Builder!
+      </Heading>
+      <List textColor="white" >
+        <ListItem>Single Point of Control</ListItem>
+        <ListItem>Flexibility</ListItem>
+        <ListItem>You Can Give Up</ListItem>
+      </List>
+      </Slide>
+      <Slide bgColor="black">
+      <Heading fit caps>
+        Single Point of Control
+      </Heading>
+      <Text textColor="white" textAlign="left"><br/>A way to define a specific set of tasks / configs / etc. for one "type" of project.</Text>
+      <Text textColor="white" textAlign="left"><br/>For example, we have an ever-expanding set of related repos for our Catalyst student portal project which all share a nearly-identical dev / prod / build workflow.</Text>
+      </Slide>
+      <Slide bgColor="black">
+      <Heading fit caps>
+        Flexibility
+      </Heading>
+      <Text textColor="white" textAlign="left"><br/>Many tools exist for controlling JavaScript workflows / dev lifecycles.</Text>
+      <Text textColor="white" textAlign="left"><br/>These work great if everything is within the workflow but fall apart when you want to be slightly different.</Text>
+      <Text textColor="white" textAlign="left"><br/>Builder allows fine grain task overriding by name, where larger composed tasks still say the same and allow a specific repo to be different.</Text>
+      </Slide>
+      <Slide bgColor="black">
+      <Heading fit caps>
+        You can give up
+      </Heading>
+      <Text textColor="white" textAlign="left"><br/>One of the main goals of builder is to remain very close to a basic npm workflow.</Text>
+      <Text textColor="white" textAlign="left"><br/>A section exists in the Builder guide on how to abandon the use of Builder in a project and revert everything from archetypes back to vanilla npm package.json scripts, dependencies and devDependencies.</Text>
+      </Slide>
+      <Slide bgColor="black">
+      <Heading size={1} fit caps>
+        Overview
+      </Heading>
+      <List textColor="white">
+        <ListItem>Tool for consuming package.json scripts commands</ListItem>
+        <ListItem>Provides sensible / flexible defaults</ListItem>
+        <ListItem>Support various scenarios ("archetypes") for your common use cases across multiple projects</ListItem>
+      </List>
+      </Slide>
+      <Slide bgColor="black">
+      <Heading size={1} fit caps>
+        Archetypes
+      </Heading>
+      <List textColor="white">
+        <ListItem>Opinionated and deal with common scenarios for your projects</ListItem>
+        <ListItem>Dictate file structure</ListItem>
+        <ListItem>Standard configurations</ListItem>
+        <ListItem>Development workflows</ListItem>
+        <ListItem>One per project</ListItem>
+      </List>
+      </Slide>
+      <Slide bgColor="black">
+        <Heading size={1} fit>
+          Archetype provides
+        </Heading>
+        <List textColor="white">
+          <ListItem>package.json with builder friendly script tasks</ListItem>
+          <ListItem>dependencies and dev dependencies to build, test, etc</ListItem>
+          <ListItem>config files for all script tasks</ListItem>
+          <ListItem>local script (package.json tasks) resolved before Archetype's</ListItem>
         </List>
       </Slide>
-      <Slide transition={["slide"]} bgColor="primary">
-        <Heading size={1} caps fit textColor="tertiary">
-          Your presentations are interactive
-        </Heading>
-        <Interactive/>
+      <Slide bgColor="black">
+      <Heading size={1} fit>
+        Builder Archetype: React Component
+      </Heading>
+      <Text textAlign="left" textColor="white">Installation</Text>
+      <CodePane
+        source={require("raw!./assets/deck.installation")}
+        margin="20px auto"
+      />
+      <Text textAlign="left" textColor="white">Project Structure</Text>
+      <CodePane
+        source={require("raw!./assets/deck.projectstructure")}
+        margin="20px auto"
+      />
       </Slide>
-      <Slide transition={["spin", "slide"]} bgColor="tertiary">
-        <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
-          Made with love in Seattle by
+      <Slide transition={["slide"]} bgColor="black">
+        <Heading caps fit textColor="primary">
+          Now we have tasks
         </Heading>
-        <Link href="http://www.formidablelabs.com"><Image width="100%" src={images.logo}/></Link>
+        <Text textColor="white" textAlign="left"><br/>The underlying concept is that builder script commands are simply NPM-friendly package.json script commands</Text>
+        <CodePane
+          source={require("raw!./assets/deck.tasks")}
+          margin="20px auto"
+        />
+      </Slide>
+      <Slide transition={["slide"]} bgColor="black">
+        <Heading caps  textColor="primary">
+          Build related
+        </Heading>
+        <CodePane
+          source={require("raw!./assets/deck.tasks2")}
+          margin="20px auto"
+        />
+      </Slide>
+      <Slide transition={["slide"]} bgColor="black">
+        <Heading caps  textColor="primary">
+          Local dev server
+        </Heading>
+        <CodePane
+          source={require("raw!./assets/deck.tasks4")}
+          margin="20px auto"
+        />
+      </Slide>
+      <Slide transition={["slide"]} bgColor="black">
+        <Heading caps  textColor="primary">
+          Testing
+        </Heading>
+        <CodePane
+          source={require("raw!./assets/deck.tasks5")}
+          margin="20px auto"
+        />
+      </Slide>
+      <Slide bgColor="black">
+        <Heading size={1} fit>
+          Summary
+        </Heading>
+        <List textColor="white">
+          <ListItem>Definitely use if you have multiple similar repositories</ListItem>
+          <ListItem>Only React Archetype exists right now</ListItem>
+          <ListItem>Easy way to get started with webpack, testing, and publishing to NPM</ListItem>
+        </List>
+      </Slide>
+      <Slide transition={["zoom", "fade"]} bgColor="primary">
+        <Heading caps fit>Questions?</Heading>
+      </Slide>
+      <Slide transition={["zoom", "fade"]} bgColor="black">
+        <Heading caps fit>Quick Start / Demo</Heading>
+        <Text textAlign="left" textColor="white"><br/>$ npm install -g yo<br/>
+$ npm install -g generator-formidable-react-component<br/>
+$ yo formidable-react-component</Text>
       </Slide>
     </Deck>
   </Spectacle>

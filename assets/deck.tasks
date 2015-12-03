@@ -1,0 +1,24 @@
+$ builder help builder-react-component
+[builder:help]
+
+Usage:
+
+  builder [action] [task]
+
+Actions:
+
+  help, run, concurrent, install
+
+Tasks:
+
+  npm:postinstall
+    [builder-react-component] node -e "require('fs').stat('lib', function(e,s){process.exit(e || !s.isDirectory() ? 1 : 0)})" || builder run build-lib
+
+  npm:preversion
+    [builder-react-component] builder run check
+
+  npm:test
+    [builder-react-component] builder run test-frontend
+
+  npm:version
+    [builder-react-component] builder run clean && builder run build && git add -A dist

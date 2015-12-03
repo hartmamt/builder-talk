@@ -1,0 +1,20 @@
+check
+  [builder-react-component] builder run lint && builder run test
+
+check-ci
+  [builder-react-component] builder run lint && builder run test-ci
+
+check-cov
+  [builder-react-component] builder run lint && builder run test-cov
+
+check-dev
+  [builder-react-component] builder run lint && builder run test-dev
+
+clean
+  [builder-react-component] builder run clean-lib && builder run clean-dist
+
+clean-dist
+  [builder-react-component] rimraf dist
+
+clean-lib
+  [builder-react-component] rimraf lib

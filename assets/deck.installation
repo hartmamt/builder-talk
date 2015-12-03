@@ -1,0 +1,2 @@
+$ npm install --save builder-react-component
+$ npm install --save-dev builder-react-component-dev

@@ -1,0 +1,23 @@
+test
+  [builder-react-component] builder run npm:test
+
+test-ci
+  [builder-react-component] builder run test-frontend-ci
+
+test-cov
+  [builder-react-component] builder run test-frontend-cov
+
+test-dev
+  [builder-react-component] builder run test-frontend-dev
+
+test-frontend
+  [builder-react-component] node node_modules/builder-react-component/node_modules/karma/bin/karma start node_modules/builder-react-component/config/karma/karma.conf.js
+
+test-frontend-ci
+  [builder-react-component] node node_modules/builder-react-component/node_modules/karma/bin/karma start --browsers PhantomJS,Firefox node_modules/builder-react-component/config/karma/karma.conf.coverage.js
+
+test-frontend-cov
+  [builder-react-component] node node_modules/builder-react-component/node_modules/karma/bin/karma start node_modules/builder-react-component/config/karma/karma.conf.coverage.js
+
+test-frontend-dev
+  [builder-react-component] node node_modules/builder-react-component/node_modules/karma/bin/karma start node_modules/builder-react-component/config/karma/karma.conf.dev.js
